@@ -1,0 +1,224 @@
+package pojo;
+
+import com.alibaba.fastjson2.JSON;
+import com.google.common.collect.Lists;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.testng.annotations.Test;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * @auther zzyy
+ * @create 2021-03-10 10:13
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+//@Accessors(chain = true)
+public class Book
+{
+    private Integer id;
+    private String  bookName;
+    private double  price;
+    private String  author;
+
+//    public static void main(String[] args) {
+////        List<String> ids = new ArrayList<>();
+////        List<String> ids = null;
+////
+////        if(ids.isEmpty()){
+////            System.out.println("1111");
+////        }else{
+////            System.out.println("2222");
+////        }
+//
+////        Map<String,String > maps = new Hashtable<>(4);
+////        maps.put("1", "2");
+////        String val = maps.get("1");
+////        System.out.println(val);
+//
+////        int val = 0x7FFFFFFF;
+////        System.out.println("===>: " + val);
+////
+////        int res = 50 & val;
+////        System.out.println(res);
+////
+////        Book book1 = new Book();
+////        Book book2 = new Book();
+////
+////        System.out.println(book1.hashCode() + "=============" + book2.hashCode());
+//
+////        BigDecimal amount = new BigDecimal("2.234");
+////
+////        System.out.println(amount.setScale(3, RoundingMode.UNNECESSARY));
+//
+////        String input = "(这是一个测试) (另一个测试) (test)women2022-02-11";
+////
+////        // 定义正则表达式模式
+////        Pattern pattern = Pattern.compile("(\\d{4}-\\d{2}-\\d{2})");
+////
+////        // 创建 Matcher 对象
+////        Matcher matcher = pattern.matcher(input);
+////
+////        // 查找并打印匹配的整个字符串
+////        while (matcher.find()) {
+////            System.out.println(matcher.group()); // 打印整个匹配的字符串
+////        }
+////
+////        String a="1,2,3,4,5,6,7,8";
+////
+////        List<String> aa = Arrays.asList(a.split(","));
+////
+////        String b = "a,b,c,d,e,f,g";
+////        List<String> bb = Arrays.asList(b.split(","));
+////
+////
+////        List<List<String>> cc = new ArrayList<>(new ArrayList<>());
+////        cc.add(aa);
+////        cc.add(bb);
+////
+////        System.out.println(cc);
+////
+////
+////        System.out.println("======================================================");
+////
+////        Long lValue = 1000000000000L;
+////
+////        System.out.println(lValue.toString());
+////
+////        BigDecimal num = new BigDecimal(0.66);
+////
+////        System.out.println(num);
+////        System.out.println(num.pow(10));
+//
+//        Integer a = Integer.valueOf("1");
+//        int b = Integer.parseInt("1");
+//
+//        System.out.println("a:"+a);
+//        System.out.println("b:"+b);
+//    }
+
+//    public static void main(String[] args) {
+////        for (int i = 0; i < 10; i++) {
+////            getReturn(i);
+////        }
+////        int a = 66;
+////        int b = 68;
+////
+////        System.out.println(a&b); //64
+//
+////        int c = 62;
+////        int d = 63;
+////
+////        System.out.println(c&d); //62
+//    }
+
+    public static void getReturn(int i) {
+        if (i == 2) {
+            return;
+        }
+
+        System.out.println("result =====" + i);
+    }
+
+
+    public static void main(String[] args) {
+//        if(getA() & getB()){
+//            System.out.println("=============================");
+//        }
+        StringBuilder str = new StringBuilder();
+        str.append("-")
+                .append(".");
+
+        System.out.println(str.toString());
+    }
+
+    public static boolean getA(){
+        System.out.println("===A======");
+        return true;
+    }
+
+    public static boolean getB(){
+        System.out.println("====B===========");
+        return false;
+    }
+
+    @Test
+    public void test01(){
+        int a =1, b = 4;
+        System.out.println( a != 1 && b != 5);
+
+        int c = 1, d = 3;
+        System.out.println( c != 1 && d != 5);
+
+        int e = 1, f = 2;
+        System.out.println( e != 1 && f != 5);
+    }
+
+    @Test
+    public void test02(){
+        int a =2, b = 5;
+        System.out.println( a != 1 && b != 5);
+
+        int c = 3, d = 5;
+        System.out.println( c != 1 && d != 5);
+
+        int e = 4, f = 5;
+        System.out.println( e != 1 && f != 5);
+
+        e = 5; f = 5;
+        System.out.println( e != 1 && f != 5);
+
+        int g = 4, h = 6;
+        System.out.println( g != 1 && h != 5);
+
+        g = 4; h = 7;
+        System.out.println( g != 1 && h != 5);
+    }
+
+    /**
+     * 测试方法test03：演示使用Stream API的filter操作过滤集合元素（使用逻辑非或操作）
+     * 功能：从用户列表中排除特定的两个用户名
+     */
+    @Test 
+    public void test03() { 
+        // 创建包含多个用户名的列表
+        List<String> list = Lists.newArrayList("wanglx077", "zhangf71", "wangx602", "zhangc407", "guoch563", "lil88", "zhangyd58"); 
+    
+        // 使用Stream API进行过滤操作
+        // filter条件：排除等于"wanglx077"或"zhangf71"的元素
+        // !(A || B) 逻辑等价于 !A && !B (德摩根定律)
+        list = list.stream() 
+                .filter(item -> !(item.equals("wanglx077") || item.equals("zhangf71"))) 
+                .collect(Collectors.toList()); // 将Stream转换回List
+    
+        // 打印过滤后的结果（JSON格式）
+        System.out.println(JSON.toJSONString(list));
+
+        //["wangx602","zhangc407","guoch563","lil88","zhangyd58"]
+    } 
+    
+    /**
+     * 测试方法test04：演示使用Stream API的filter操作过滤集合元素（使用逻辑与非操作）
+     * 功能：从用户列表中排除特定的两个用户名（与test03实现相同功能，仅条件表达式写法不同）
+     */
+    @Test 
+    public void test04() { 
+        // 创建包含多个用户名的列表（与test03相同的数据源）
+        List<String> list = Lists.newArrayList("wanglx077", "zhangf71", "wangx602", "zhangc407", "guoch563", "lil88", "zhangyd58"); 
+    
+        // 使用Stream API进行过滤操作
+        // filter条件：只保留既不等于"wanglx077"也不等于"zhangf71"的元素
+        // !A && !B 逻辑等价于 !(A || B) (德摩根定律)
+        list = list.stream() 
+                .filter(item -> (!item.equals("wanglx077") && !item.equals("zhangf71"))) 
+                .collect(Collectors.toList()); // 将Stream转换回List
+    
+        // 打印过滤后的结果（JSON格式，与test03结果相同）
+        System.out.println(JSON.toJSONString(list));
+        //["wangx602","zhangc407","guoch563","lil88","zhangyd58"]
+    }
+}
